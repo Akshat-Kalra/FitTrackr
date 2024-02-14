@@ -8,11 +8,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 // WorkoutLoggerApplication
+/* ==== Source Attribution / Reference =====
+   Some of the methods in this class has been referenced from the TellerApp provided
+   with the description of Project on edX.
+   Specifically : runWorkoutLoggerApp() <-> runTeller()
+                   init()
+                   processCommand(String command)
+                   displayMenu()
+ */
 public class WorkoutLoggerApp {
     private WorkoutLog listOfWorkout;
     private Scanner input;
     private int volume;
-    private String asciiArt = "      _                                   _\n"
+    private final String asciiArt = "      _                                   _\n"
             + "    _| |                                 | |_\n"
             + "   | | |______OOOOo__________oOOOO_______| | |\n"
             + "  [| | |--------(`,----------\\`,---------| | |]\n"
@@ -180,6 +188,9 @@ public class WorkoutLoggerApp {
         System.out.printf("Your total volume for all the added workouts is %s", volume);
     }
 
+    // EFFECTS: displays every time you did the provided exercises with sets, reps and weight and volume
+    //          also displays the difference in volume from when you did the exercise most recently from when you
+    //          did the exercise for the first time.
     private void showProgress() {
         System.out.printf("Enter the name of the exercise you want to see progress in (case sensitive):\n ");
         String name = input.next();
@@ -188,23 +199,33 @@ public class WorkoutLoggerApp {
         } else {
             ArrayList<Exercise> exercises = listOfWorkout.getListOfAnExercise(name);
 
-            int i = 1;
             System.out.printf("Wow....you made a lot of progress in %s", name);
-            for (Exercise exercise : exercises) {
-                System.out.printf("\nDay %s%n", i);
-                System.out.printf("\t \t Sets: %s%n", exercise.getSets());
-                System.out.printf("\t \t Reps: %s%n", exercise.getReps());
-                System.out.printf("\t \t Weight: %s%n", exercise.getWeight());
-                System.out.printf("\t \t Exercise Volume: %s%n", exercise.exerciseVolume());
-                i++;
-            }
+            renderExercises(exercises);
 
             int volDay1 = exercises.get(0).exerciseVolume();
             int volDay2 = exercises.get(exercises.size() - 1).exerciseVolume();
 
-            System.out.printf("Damnn boyyy....you had %s increase in volume since day 1", volDay2 - volDay1);
+            if ((volDay2 - volDay1) == 0) {
+                System.out.printf("No progress since Day 1......Work Harder!!!");
+            } else {
+                System.out.printf("Damnn boyyy....you had %s increase in volume since Day 1", volDay2 - volDay1);
+            }
         }
 
+    }
+
+    // EFFECTS: renders the exercises' sets, reps, weight and exercise volume given
+    //          an array list of exercises.
+    private void renderExercises(ArrayList<Exercise> exercises) {
+        int i = 1;
+        for (Exercise exercise : exercises) {
+            System.out.printf("\nDay %s%n", i);
+            System.out.printf("\t \t Sets: %s%n", exercise.getSets());
+            System.out.printf("\t \t Reps: %s%n", exercise.getReps());
+            System.out.printf("\t \t Weight: %s%n", exercise.getWeight());
+            System.out.printf("\t \t Exercise Volume: %s%n", exercise.exerciseVolume());
+            i++;
+        }
     }
 
 

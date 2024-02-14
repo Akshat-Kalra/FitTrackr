@@ -71,6 +71,7 @@ public class WorkoutLog {
         return listOfWorkouts.isEmpty();
     }
 
+
     public int getSize() {
         return listOfWorkouts.size();
     }

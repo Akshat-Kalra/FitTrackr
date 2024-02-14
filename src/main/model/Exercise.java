@@ -12,7 +12,7 @@ public class Exercise {
      * REQUIRES: number, sets, reps and weight is positive integers.
      *           exerciseName has a non-zero length
      * EFFECTS: creates an Exercise with the provided number,
-     *          name, sets performed, repititions performed,
+     *          name, sets performed, repetitions performed,
      *          weight lifted (in lbs).
      */
     public Exercise(int number, String exerciseName, int sets, int reps, int weight) {

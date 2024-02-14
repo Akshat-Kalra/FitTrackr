@@ -25,7 +25,6 @@ public class Workout {
     }
 
 
-
     public ArrayList<Exercise> getExerciseList() {
         return exerciseList;
     }
