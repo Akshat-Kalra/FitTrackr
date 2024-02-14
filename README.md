@@ -1,4 +1,4 @@
-# LifeFitPro
+# FitTrackr
 
 ## About the Application
 

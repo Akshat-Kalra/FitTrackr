@@ -22,7 +22,7 @@ public class WorkoutLog {
         return true;
     }
 
-    /*
+    /* REQUIRES: Provided Workout has to be in listOfWorkouts
      * MODIFIES: this
      * EFFECTS: removes the Workout provided from the listOfWorkouts and returns true.
      */
@@ -32,6 +32,7 @@ public class WorkoutLog {
     }
 
     /*
+     * REQUIRES: index > 0 and there has to be a Workout present in the provided index value.
      * MODIFIES: this
      * EFFECTS: removes the Workout from the index provided from the listOfWorkouts and returns true.
      */
@@ -47,7 +48,7 @@ public class WorkoutLog {
     }
 
     /*
-     * REEQUIRES: name has a non-zero length
+     * REQUIRES: name has a non-zero length
      * EFFECTS: returns a list of exercises
      *          with every exercise ever done with the provided name.
      */

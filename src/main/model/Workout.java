@@ -5,7 +5,6 @@ import java.util.ArrayList;
 // Represents a Workout which is a list of exercises (listOfExercise).
 public class Workout {
     private ArrayList<Exercise> exerciseList;
-    private int workoutDay;
 
     /*
     EFFECTS: assigns an empty array list to exerciseList
