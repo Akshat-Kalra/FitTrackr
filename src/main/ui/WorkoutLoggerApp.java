@@ -12,40 +12,39 @@ public class WorkoutLoggerApp {
     private WorkoutLog listOfWorkout;
     private Scanner input;
     private int volume;
-    @SuppressWarnings("checkstyle:OperatorWrap")
-    private String asciiArt = "      _                                   _\n" +
-            "    _| |                                 | |_\n" +
-            "   | | |______OOOOo__________oOOOO_______| | |\n" +
-            "  [| | |--------(`,----------\\`,---------| | |]\n" +
-            "   |_| |      )  (            )  (       | |_|\n" +
-            "     |_|      /  |            |  \\       |_|\n" +
-            "              |  |  \\\\\\//  |  |\n" +
-            "              \\  /  | -  - |  \\  /\n" +
-            "              /  \\ (  a  a  ) /  \\\n" +
-            "              |   | |  L   | |   |\n" +
-            "              |   | \\  ==  / |   |\n" +
-            "              |   /_.\\____/._\\   |\n" +
-            "               \\   ||      ||   /\n" +
-            "                \\  | '-..-' |  /\n" +
-            "                |  ;  CPSC  ;  |\n" +
-            "                | /   210    \\ |\n" +
-            "                 \\            /\n" +
-            "                  |          |\n" +
-            "                  |    __    |\n" +
-            "                  |===[LI]===|\n" +
-            "                  )\"\"\"`\"\"`\"\"\"(\n" +
-            "                 /            \\\n" +
-            "                /    ,____,    \\\n" +
-            "               /'-._ .'  '. _.-'\\\n" +
-            "              /     /      \\     \\\n" +
-            "              |    /        \\    |\n" +
-            "              (_  /          \\  _)\n" +
-            "               |  `\\        /`  |\n" +
-            "               |___|        |___|\n" +
-            "               |===/        \\===|\n" +
-            "             _/\\._(          )_./\\_\n" +
-            "           /`      |         |    _`\\\n" +
-            "           `\"\"\"\"\"`\"           \"\"`\"\"`";
+    private String asciiArt = "      _                                   _\n"
+            + "    _| |                                 | |_\n"
+            + "   | | |______OOOOo__________oOOOO_______| | |\n"
+            + "  [| | |--------(`,----------\\`,---------| | |]\n"
+            + "   |_| |      )  (            )  (       | |_|\n"
+            + "     |_|      /  |            |  \\       |_|\n"
+            + "              |  |  \\\\\\//  |  |\n"
+            + "              \\  /  | -  - |  \\  /\n"
+            + "              /  \\ (  a  a  ) /  \\\n"
+            + "              |   | |  L   | |   |\n"
+            + "              |   | \\  ==  / |   |\n"
+            + "              |   /_.\\____/._\\   |\n"
+            + "               \\   ||      ||   /\n"
+            + "                \\  | '-..-' |  /\n"
+            + "                |  ;  CPSC  ;  |\n"
+            + "                | /   210    \\ |\n"
+            + "                 \\            /\n"
+            + "                  |          |\n"
+            + "                  |    __    |\n"
+            + "                  |===[LI]===|\n"
+            + "                  )\"\"\"`\"\"`\"\"\"(\n"
+            + "                 /            \\\n"
+            + "                /    ,____,    \\\n"
+            + "               /'-._ .'  '. _.-'\\\n"
+            + "              /     /      \\     \\\n"
+            + "              |    /        \\    |\n"
+            + "              (_  /          \\  _)\n"
+            + "               |  `\\        /`  |\n"
+            + "               |___|        |___|\n"
+            + "               |===/        \\===|\n"
+            + "             _/\\._(          )_./\\_\n"
+            + "           /`      |         |    _`\\\n"
+            + "           `\"\"\"\"\"`\"           \"\"`\"\"`";
 
 
     // EFFECTS: runs the WorkoutLoggerApplication application
@@ -175,7 +174,7 @@ public class WorkoutLoggerApp {
 
     // EFFECTS: displays the total volume from all the workouts in listOfWorkout.
     public void displayVolume() {
-        System.out.printf("Your total volume for all the added workouts is %s",volume);
+        System.out.printf("Your total volume for all the added workouts is %s", volume);
     }
 
 
