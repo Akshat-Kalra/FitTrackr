@@ -1,21 +1,62 @@
 package ui;
 
 import model.Workout;
-import model.ListOfWorkout;
+import model.WorkoutLog;
 import model.Exercise;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+// WorkoutLoggerApplication
 public class WorkoutLoggerApp {
-    private ListOfWorkout listOfWorkout;
+    private WorkoutLog listOfWorkout;
     private Scanner input;
+    private int volume;
+    @SuppressWarnings("checkstyle:OperatorWrap")
+    private String asciiArt = "      _                                   _\n" +
+            "    _| |                                 | |_\n" +
+            "   | | |______OOOOo__________oOOOO_______| | |\n" +
+            "  [| | |--------(`,----------\\`,---------| | |]\n" +
+            "   |_| |      )  (            )  (       | |_|\n" +
+            "     |_|      /  |            |  \\       |_|\n" +
+            "              |  |  \\\\\\//  |  |\n" +
+            "              \\  /  | -  - |  \\  /\n" +
+            "              /  \\ (  a  a  ) /  \\\n" +
+            "              |   | |  L   | |   |\n" +
+            "              |   | \\  ==  / |   |\n" +
+            "              |   /_.\\____/._\\   |\n" +
+            "               \\   ||      ||   /\n" +
+            "                \\  | '-..-' |  /\n" +
+            "                |  ;  CPSC  ;  |\n" +
+            "                | /   210    \\ |\n" +
+            "                 \\            /\n" +
+            "                  |          |\n" +
+            "                  |    __    |\n" +
+            "                  |===[LI]===|\n" +
+            "                  )\"\"\"`\"\"`\"\"\"(\n" +
+            "                 /            \\\n" +
+            "                /    ,____,    \\\n" +
+            "               /'-._ .'  '. _.-'\\\n" +
+            "              /     /      \\     \\\n" +
+            "              |    /        \\    |\n" +
+            "              (_  /          \\  _)\n" +
+            "               |  `\\        /`  |\n" +
+            "               |___|        |___|\n" +
+            "               |===/        \\===|\n" +
+            "             _/\\._(          )_./\\_\n" +
+            "           /`      |         |    _`\\\n" +
+            "           `\"\"\"\"\"`\"           \"\"`\"\"`";
 
+
+    // EFFECTS: runs the WorkoutLoggerApplication application
     public WorkoutLoggerApp() {
+        System.out.println("\nWelcome to LifeFitPro");
+        System.out.println(asciiArt);
         runWorkoutLoggerApp();
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes user input
     public void runWorkoutLoggerApp() {
         boolean keepGoing = true;
         String command = null;
@@ -38,9 +79,9 @@ public class WorkoutLoggerApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes listofworkout
+    // EFFECTS: initializes listOfWorkout
     private void init() {
-        listOfWorkout = new ListOfWorkout();
+        listOfWorkout = new WorkoutLog();
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }
@@ -65,13 +106,15 @@ public class WorkoutLoggerApp {
         } else if (command.equals("s")) {
             displayWorkouts();
         } else if (command.equals("v")) {
-            //displayVolume();
+            displayVolume();
         } else {
             System.out.println("Selection not valid...");
         }
     }
 
 
+    // MODIFIES: this
+    // EFFECTS: adds a workout to the listOfWorkout
     private void addWorkout() {
         Workout workout = new Workout();
         System.out.println("Enter the number of exercises you did:");
@@ -85,14 +128,14 @@ public class WorkoutLoggerApp {
             int reps = input.nextInt();
             System.out.printf("Enter weight (lbs): ");
             int weight = input.nextInt();
-            Exercise exercise = new Exercise(j + 1, exerciseName,sets,reps,weight);
-            // Workout workout = new Workout();
+            Exercise exercise = new Exercise(j + 1, exerciseName, sets, reps, weight);
             workout.addExercise(exercise);
         }
         listOfWorkout.addWorkout(workout);
 
     }
 
+    // EFFECTS: display all previous workouts added to listOfWorkout
     private void displayWorkouts() {
         ArrayList<Workout> displayWorkout = listOfWorkout.getListOfWorkouts();
         System.out.println("All previous workouts displayed below:");
@@ -112,25 +155,28 @@ public class WorkoutLoggerApp {
             }
             i++;
         }
+        this.volume = volume;
         System.out.printf("Total Volume: %s%n", volume);
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes the inputted number of workout from listOfWorkout.
     private void deleteWorkout() {
-        System.out.println("\tEnter number of the workout you want to remove: \n");
+        System.out.printf("Enter number of the workout you want to remove: ");
         int number = input.nextInt();
 
-        if (number <= listOfWorkout.getSize()) {
+        if (number <= listOfWorkout.getSize() && number >= 1) {
             listOfWorkout.removeWorkoutFromIndex(number - 1);
             System.out.println("\t Workout removed successfully");
         } else {
-            System.out.println("\t Workout does not exist.......");
+            System.out.println("\t ------------------Workout does not exist------------------");
         }
     }
 
-
-
-
-
+    // EFFECTS: displays the total volume from all the workouts in listOfWorkout.
+    public void displayVolume() {
+        System.out.printf("Your total volume for all the added workouts is %s",volume);
+    }
 
 
 }

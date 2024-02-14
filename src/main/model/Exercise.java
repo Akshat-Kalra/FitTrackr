@@ -1,5 +1,6 @@
 package model;
 
+// Represents an exercise having a number, name, number of sets performed, reps performed and weight lifted (in lbs).
 public class Exercise {
     private final int exerciseNumber;
     private String exerciseName;
@@ -7,9 +8,13 @@ public class Exercise {
     private int reps;
     private int weight;
 
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS: creates an exercise with the inputted exerciseNumber, exerciseName, sets, reps, weight.
+    /*
+     * REQUIRES: number, sets, reps and weight is positive integers.
+     *           exerciseName has a non-zero length
+     * EFFECTS: creates an Exercise with the provided number,
+     *          name, sets performed, repititions performed,
+     *          weight lifted (in lbs).
+     */
     public Exercise(int number, String exerciseName, int sets, int reps, int weight) {
         this.exerciseNumber = number;
         this.exerciseName = exerciseName;
@@ -38,6 +43,12 @@ public class Exercise {
         return this.weight;
     }
 
+
+    /*
+     * REQUIRES: sets, reps and weight > 0
+     * EFFECTS: returns the total exercise volume, which is just
+     *          Volume = (sets performed * reps performed * weight lifted (in lbs)).
+     */
     public int exerciseVolume() {
         return (this.sets * this.reps * this.weight);
     }
