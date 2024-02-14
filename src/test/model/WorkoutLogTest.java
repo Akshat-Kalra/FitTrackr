@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ListOfWorkoutTest {
+public class WorkoutLogTest {
 
     private WorkoutLog listOfWorkout;
     private Workout workout1;
@@ -90,7 +90,7 @@ public class ListOfWorkoutTest {
     @Test
     void removeWorkoutFromIndexTestSingular() {
         assertTrue(listOfWorkout.addWorkout(workout1));
-        assertEquals(listOfWorkout.getListOfWorkouts().size(), 1);
+        assertEquals(listOfWorkout.getSize(), 1);
         assertTrue(listOfWorkout.removeWorkoutFromIndex(0));
         assertTrue(listOfWorkout.isEmpty());
     }
@@ -100,7 +100,7 @@ public class ListOfWorkoutTest {
         assertTrue(listOfWorkout.addWorkout(workout1));
         assertTrue(listOfWorkout.addWorkout(workout2));
         assertTrue(listOfWorkout.addWorkout(workout3));
-        assertEquals(listOfWorkout.getListOfWorkouts().size(), 3);
+        assertEquals(listOfWorkout.getSize(), 3);
         assertTrue(listOfWorkout.removeWorkoutFromIndex(1));
 
         ArrayList<Workout> temp = new ArrayList<Workout>();
