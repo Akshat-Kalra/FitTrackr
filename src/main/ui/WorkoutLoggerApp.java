@@ -129,19 +129,23 @@ public class WorkoutLoggerApp {
         Workout workout = new Workout();
         System.out.println("Enter the number of exercises you did:");
         int i = input.nextInt();
-        for (int j = 0; j < i; j++) {
-            System.out.printf("Enter exercise number %s: ", j + 1);
-            String exerciseName = input.next();
-            System.out.printf("Enter number of sets: ");
-            int sets = input.nextInt();
-            System.out.printf("Enter number of reps: ");
-            int reps = input.nextInt();
-            System.out.printf("Enter weight (lbs): ");
-            int weight = input.nextInt();
-            Exercise exercise = new Exercise(j + 1, exerciseName, sets, reps, weight);
-            workout.addExercise(exercise);
+        if (i <= 0) {
+            System.out.printf("Pls enter a positive number.....");
+        } else {
+            for (int j = 0; j < i; j++) {
+                System.out.printf("Enter exercise number %s: ", j + 1);
+                String exerciseName = input.next();
+                System.out.printf("Enter number of sets: ");
+                int sets = input.nextInt();
+                System.out.printf("Enter number of reps: ");
+                int reps = input.nextInt();
+                System.out.printf("Enter weight (lbs): ");
+                int weight = input.nextInt();
+                Exercise exercise = new Exercise(j + 1, exerciseName, sets, reps, weight);
+                workout.addExercise(exercise);
+            }
+            listOfWorkout.addWorkout(workout);
         }
-        listOfWorkout.addWorkout(workout);
 
     }
 
