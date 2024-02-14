@@ -19,6 +19,7 @@ public class WorkoutLogTest {
     private Exercise ex2;
     private Exercise ex3;
     private Exercise ex4;
+    private Exercise ex5;
 
 
     @BeforeEach
@@ -31,6 +32,7 @@ public class WorkoutLogTest {
         ex2 = new Exercise(2,"dumbell rows", 4, 12, 40);
         ex3 = new Exercise(3,"deadlifts", 2, 5, 200);
         ex4 = new Exercise(4,"squats", 3, 5, 225);
+        ex5 = new Exercise(5,"bench press", 4, 7, 80);
         workout1.addExercise(ex1);
         workout1.addExercise(ex4);
         workout2.addExercise(ex2);
@@ -108,6 +110,22 @@ public class WorkoutLogTest {
         temp.add(workout3);
 
         assertEquals(listOfWorkout.getListOfWorkouts(), temp);
+    }
+
+
+    @Test
+    void getListOfAnExerciseTest() {
+        listOfWorkout.addWorkout(workout1);
+        workout2.addExercise(ex5);
+        listOfWorkout.addWorkout(workout2);
+        listOfWorkout.addWorkout(workout3);
+
+        ArrayList<Exercise> temp = new ArrayList<Exercise>();
+        temp.add(ex1);
+        temp.add(ex5);
+
+        assertEquals(listOfWorkout.getListOfAnExercise("bench press"), temp);
+
     }
 
 

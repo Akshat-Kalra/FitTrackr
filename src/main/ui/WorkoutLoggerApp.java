@@ -92,6 +92,7 @@ public class WorkoutLoggerApp {
         System.out.println("\tD -> Delete Workout");
         System.out.println("\tS -> Display Workouts");
         System.out.println("\tV -> Display Total Volume");
+        System.out.println("\tP -> Show progress");
         System.out.println("\tQ -> QUIT");
     }
 
@@ -106,6 +107,8 @@ public class WorkoutLoggerApp {
             displayWorkouts();
         } else if (command.equals("v")) {
             displayVolume();
+        } else if (command.equals("p")) {
+            showProgress();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -173,8 +176,35 @@ public class WorkoutLoggerApp {
     }
 
     // EFFECTS: displays the total volume from all the workouts in listOfWorkout.
-    public void displayVolume() {
+    private void displayVolume() {
         System.out.printf("Your total volume for all the added workouts is %s", volume);
+    }
+
+    private void showProgress() {
+        System.out.printf("Enter the name of the exercise you want to see progress in (case sensitive):\n ");
+        String name = input.next();
+        if (listOfWorkout.getListOfAnExercise(name).isEmpty()) {
+            System.out.printf("You haven't done this exercise");
+        } else {
+            ArrayList<Exercise> exercises = listOfWorkout.getListOfAnExercise(name);
+
+            int i = 1;
+            System.out.printf("Wow....you made a lot of progress in %s", name);
+            for (Exercise exercise : exercises) {
+                System.out.printf("\nDay %s%n", i);
+                System.out.printf("\t \t Sets: %s%n", exercise.getSets());
+                System.out.printf("\t \t Reps: %s%n", exercise.getReps());
+                System.out.printf("\t \t Weight: %s%n", exercise.getWeight());
+                System.out.printf("\t \t Exercise Volume: %s%n", exercise.exerciseVolume());
+                i++;
+            }
+
+            int volDay1 = exercises.get(0).exerciseVolume();
+            int volDay2 = exercises.get(exercises.size() - 1).exerciseVolume();
+
+            System.out.printf("Damnn boyyy....you had %s increase in volume since day 1", volDay2 - volDay1);
+        }
+
     }
 
 

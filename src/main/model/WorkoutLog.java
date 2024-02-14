@@ -47,6 +47,24 @@ public class WorkoutLog {
     }
 
     /*
+     * REEQUIRES: name has a non-zero length
+     * EFFECTS: returns a list of exercises
+     *          with every exercise ever done with the provided name.
+     */
+    public ArrayList<Exercise> getListOfAnExercise(String name) {
+        ArrayList<Exercise> temp = new ArrayList<Exercise>();
+        for (Workout workout : listOfWorkouts) {
+            for (Exercise exercise : workout.getExerciseList()) {
+                if (exercise.getExerciseName().equals(name)) {
+                    temp.add(exercise);
+                }
+
+            }
+        }
+        return temp;
+    }
+
+    /*
      * EFFECTS: returns true if the listOfWorkouts is empty; false if not empty.
      */
     public boolean isEmpty() {

@@ -24,6 +24,15 @@ public class Workout {
         return true;
     }
 
+    public Exercise getExercise(String name) {
+        for (Exercise exercise : exerciseList) {
+            if (exercise.getExerciseName() == name) {
+                return exercise;
+            }
+        }
+        return null;
+    }
+
 
     public ArrayList<Exercise> getExerciseList() {
         return exerciseList;
