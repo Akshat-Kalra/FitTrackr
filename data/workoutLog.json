@@ -1,0 +1,16 @@
+{"workoutLog": [{"workout": [
+    {
+        "reps": 10,
+        "sets": 3,
+        "name": "bench",
+        "weight": 70,
+        "no.": 1
+    },
+    {
+        "reps": 10,
+        "sets": 3,
+        "name": "rows",
+        "weight": 40,
+        "no.": 2
+    }
+]}]}

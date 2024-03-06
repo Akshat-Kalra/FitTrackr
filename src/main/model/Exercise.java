@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents an exercise having a number, name, number of sets performed, reps performed and weight lifted (in lbs).
-public class Exercise {
+public class Exercise implements Writable {
     private final int exerciseNumber;
     private String exerciseName;
     private int sets;
@@ -51,5 +54,16 @@ public class Exercise {
      */
     public int exerciseVolume() {
         return (this.sets * this.reps * this.weight);
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("no.", exerciseNumber);
+        json.put("name", exerciseName);
+        json.put("sets", sets);
+        json.put("reps", reps);
+        json.put("weight", weight);
+        return json;
     }
 }

@@ -3,8 +3,13 @@ package ui;
 import model.Workout;
 import model.WorkoutLog;
 import model.Exercise;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 // WorkoutLoggerApplication
@@ -17,6 +22,9 @@ import java.util.Scanner;
                    displayMenu()
  */
 public class WorkoutLoggerApp {
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private static final String JSON_STORE = "./data/workoutLog.json";
     private WorkoutLog listOfWorkout;
     private Scanner input;
     private int volume;
@@ -91,6 +99,8 @@ public class WorkoutLoggerApp {
         listOfWorkout = new WorkoutLog();
         input = new Scanner(System.in);
         input.useDelimiter("\n");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     // EFFECTS: displays menu of options to user
@@ -101,6 +111,8 @@ public class WorkoutLoggerApp {
         System.out.println("\tS -> Display Workouts");
         System.out.println("\tV -> Display Total Volume");
         System.out.println("\tP -> Show progress");
+        System.out.println("\tW -> Save Workouts");
+        System.out.println("\tL -> Load Previous Workouts");
         System.out.println("\tQ -> QUIT");
     }
 
@@ -117,10 +129,15 @@ public class WorkoutLoggerApp {
             displayVolume();
         } else if (command.equals("p")) {
             showProgress();
+        } else if (command.equals("w")) {
+            saveWorkout();
+        } else if (command.equals("l")) {
+            loadWorkout();
         } else {
             System.out.println("Selection not valid...");
         }
     }
+
 
 
     // MODIFIES: this
@@ -231,6 +248,33 @@ public class WorkoutLoggerApp {
             i++;
         }
     }
+
+    // EFFECTS: saves the workoutlog to file
+    private void saveWorkout() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(listOfWorkout);
+            jsonWriter.close();
+            System.out.println("Saved " + "Workout Log" + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadWorkout() {
+        try {
+            listOfWorkout = jsonReader.read();
+            System.out.println("Loaded " + "Workouts" + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+
+
+
 
 
 }
