@@ -11,6 +11,11 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/* ==== Source Attribution / Reference =====
+   The methods in this class has been referenced from the JsonSerializationDemo provided
+   with the description of Project on edX.
+ */
+
 public class JsonWriterTest extends JsonTest {
 
     @Test
@@ -63,6 +68,8 @@ public class JsonWriterTest extends JsonTest {
             List<Workout> workouts = workoutLog.getListOfWorkouts();
             assertEquals(2, workouts.size());
             checkExercise(1, "test1", 3, 10, 50, workouts.get(0).getExerciseList().get(0));
+            checkExercise(2, "test2", 4, 10, 70, workouts.get(0).getExerciseList().get(1));
+            checkExercise(1, "test3", 3, 10, 40, workouts.get(1).getExerciseList().get(0));
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");

@@ -7,6 +7,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
+/* ==== Source Attribution / Reference =====
+   The methods in this class has been referenced from the JsonSerializationDemo provided
+   with the description of Project on edX.
+ */
+
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
@@ -25,7 +30,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of flashcard list to file
+    // EFFECTS: writes JSON representation of workout log to file
     public void write(WorkoutLog workoutLog) {
         JSONObject json = workoutLog.toJson();
         writesToFile(json.toString(TAB));

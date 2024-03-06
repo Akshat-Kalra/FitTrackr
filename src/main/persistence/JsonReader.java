@@ -12,6 +12,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+/* ==== Source Attribution / Reference =====
+   The methods in this class has been referenced from the JsonSerializationDemo provided
+   with the description of Project on edX.
+ */
+
 public class JsonReader {
     private String source;
 
@@ -20,7 +25,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workout log from file and returns it;
+    // EFFECTS: reads workoutLog from file and returns it;
     // throws IOException if an error occurs reading data from file
     public WorkoutLog read() throws IOException {
         String jsonData = readFile(source);
@@ -28,7 +33,7 @@ public class JsonReader {
         return parseWorkoutLog(jsonObject);
     }
 
-    // EFFECTS: parses workout log from JSON object and returns it
+    // EFFECTS: parses workoutLog from JSON object and returns it
     private WorkoutLog parseWorkoutLog(JSONObject jsonObject) {
         WorkoutLog workoutLog = new WorkoutLog();
         addWorkoutLog(workoutLog, jsonObject);
@@ -71,7 +76,7 @@ public class JsonReader {
     }
 
     // MODIFIES: workoutLog
-    // EFFECTS: parses workout from JSON object and adds them to workoutLog
+    // EFFECTS: parses exercise from JSON object and adds them to workout
     private void addExercise(Workout workout, JSONObject jsonObject) {
         int no = jsonObject.getInt("no.");
         String name = jsonObject.getString("name");
