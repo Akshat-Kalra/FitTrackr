@@ -17,6 +17,7 @@ import java.util.stream.Stream;
    with the description of Project on edX.
  */
 
+// Represents a reader that reads workoutLog from JSON data stored in file
 public class JsonReader {
     private String source;
 
