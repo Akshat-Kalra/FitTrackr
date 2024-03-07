@@ -1,24 +1,15 @@
 {"workoutLog": [
-    {"workout": [
-        {
-            "reps": 10,
-            "sets": 3,
-            "name": "benchpress",
-            "weight": 70,
-            "no.": 1
-        },
-        {
-            "reps": 10,
-            "sets": 3,
-            "name": "pullups",
-            "weight": 50,
-            "no.": 2
-        }
-    ]},
     {"workout": [{
         "reps": 10,
-        "sets": 4,
-        "name": "benchpress",
+        "sets": 3,
+        "name": "bench",
+        "weight": 80,
+        "no.": 1
+    }]},
+    {"workout": [{
+        "reps": 10,
+        "sets": 3,
+        "name": "pullups",
         "weight": 90,
         "no.": 1
     }]}

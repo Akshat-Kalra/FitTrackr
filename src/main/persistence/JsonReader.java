@@ -57,7 +57,7 @@ public class JsonReader {
     // EFFECTS: parses workoutLog from JSON object and returns it
     private void addWorkoutLog(WorkoutLog workoutLog, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("workoutLog");
-        for (Object json: jsonArray) {
+        for (Object json : jsonArray) {
             JSONObject workoutJson = (JSONObject) json;
             Workout workout = new Workout();
             addWorkout(workout, workoutJson);

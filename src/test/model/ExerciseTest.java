@@ -15,7 +15,6 @@ class ExerciseTest {
     private final int weight = 70;
 
 
-
     @BeforeEach
     void runBefore() {
         exercise = new Exercise(number, name, sets, reps, weight);
@@ -32,6 +31,6 @@ class ExerciseTest {
 
     @Test
     void exerciseVolumeTest() {
-        assertEquals(exercise.exerciseVolume(), 3*10*70);
+        assertEquals(exercise.exerciseVolume(), 3 * 10 * 70);
     }
 }
