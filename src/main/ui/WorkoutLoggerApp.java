@@ -249,7 +249,7 @@ public class WorkoutLoggerApp {
         }
     }
 
-    // EFFECTS: saves the workoutlog to file
+    // EFFECTS: saves the workoutLog to file
     private void saveWorkout() {
         try {
             jsonWriter.open();
@@ -262,11 +262,11 @@ public class WorkoutLoggerApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads workroom from file
+    // EFFECTS: loads workoutLog from file
     private void loadWorkout() {
         try {
             listOfWorkout = jsonReader.read();
-            System.out.println("Loaded " + "Workouts" + " from " + JSON_STORE);
+            System.out.println("Loaded " + "Workout Log" + " from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }

@@ -88,7 +88,7 @@ public class WorkoutLog implements Writable {
         return json;
     }
 
-    // EFFECTS:
+    // EFFECTS: return workout in this listOfWorkouts as a JSON array
     private JSONArray workoutLogToJson() {
         JSONArray jsonArray = new JSONArray();
 
