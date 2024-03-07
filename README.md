@@ -33,5 +33,5 @@ and keep the rest of them behind a paywall.
 - As a user, I want to be able to see my Total Overall Workout Volume.
 - As a user, I want to be able to see my progress in a particular exercises using the volume 
 metric and see how much I progressed in volume from Day 1. 
-- As a user, I want to be able to save my workout log to file (if I so choose)
-- As a user, I want to be able to be able to load my workout log from file (if I so choose)
+- As a user, I want to be able to save my workout log to file (if I so choose).
+- As a user, I want to be able to be able to load my workout log from file (if I so choose).
