@@ -60,6 +60,8 @@ public class WorkoutLoggerAppGUI implements ActionListener {
         frame.setSize(1000, 1000);
         panel = new JPanel();
 
+        // for commit
+
 
 
         addButton = new JButton("Add workout");
