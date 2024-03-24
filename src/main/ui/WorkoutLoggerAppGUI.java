@@ -200,6 +200,7 @@ public class WorkoutLoggerAppGUI implements ActionListener {
         countExercise();
 
     }
+
     private void resetFields() {
         exerciseName.setText("");
         sets.setText("");
@@ -307,7 +308,8 @@ public class WorkoutLoggerAppGUI implements ActionListener {
                 "Remove Workout",JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
-            if (Integer.valueOf(number.getText()) <= listOfWorkout.getSize() && Integer.valueOf(number.getText()) >= 1) {
+            if (Integer.valueOf(number.getText()) <= listOfWorkout.getSize()
+                    && Integer.valueOf(number.getText()) >= 1) {
                 if (listOfWorkout.removeWorkoutFromIndex(Integer.valueOf(number.getText()) - 1)) {
                     JOptionPane.showMessageDialog(null,
                             "Workout Succesfully Removed", "Successful",
