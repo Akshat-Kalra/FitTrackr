@@ -11,11 +11,13 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import javax.swing.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class WorkoutLoggerAppGUI implements ActionListener {
+public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
 
     private WorkoutLog listOfWorkout;
     private int volume;
@@ -43,6 +45,14 @@ public class WorkoutLoggerAppGUI implements ActionListener {
     private JTextField reps;
     private JTextField weight;
 
+    ImageIcon icon = new ImageIcon("/Users/akshatkalra/Desktop/CPSC210/project_r0z2a/src/main/ui/images/weightlifting.png");
+    Image image = icon.getImage();
+    Image newImg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH);
+
+    ImageIcon icon2 = new ImageIcon("/Users/akshatkalra/Desktop/CPSC210/project_r0z2a/src/main/ui/images/dumbbell.png");
+    Image image2 = icon2.getImage();
+    Image newImg2 = image2.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH);
+
 
     // MODIFIES: this
     // EFFECTS: runs the WorkoutLogger application with GUI
@@ -56,8 +66,7 @@ public class WorkoutLoggerAppGUI implements ActionListener {
     // EFFECTS: Initializes the GUI of the application
 
     private void initGUI() {
-        frame = new JFrame("WorkoutLogger App Menu");
-        frame.setSize(1000, 1000);
+        frame = new JFrame("FitTrackr");
         panel = new JPanel();
 
         // for commit
@@ -73,17 +82,15 @@ public class WorkoutLoggerAppGUI implements ActionListener {
         loadButton = new JButton("Load Previous Workouts");
         quitButton = new JButton("QUIT");
 
-        ImageIcon icon = new ImageIcon("/Users/akshatkalra/Desktop/CPSC210/project_r0z2a/src/main/ui/weightlifting.png");
-        Image image = icon.getImage();
-        Image newImg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH);
-        icon = new ImageIcon(newImg);
         label = new JLabel();
+        label.addMouseListener(this);
+        Icon icon = new ImageIcon(newImg);
         label.setIcon(icon);
 
 
 
         panel.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
-        panel.setPreferredSize(new Dimension(300, 300));
+        panel.setPreferredSize(new Dimension(500, 700));
 
 
         initAlignments();
@@ -139,7 +146,6 @@ public class WorkoutLoggerAppGUI implements ActionListener {
         panel.add(Box.createVerticalStrut(10));
 
     }
-
 
     // MODIFIES: this
     // EFFECTS: initializes fields
@@ -213,19 +219,27 @@ public class WorkoutLoggerAppGUI implements ActionListener {
     private void countExercise() {
         Workout workout = new Workout();
         JPanel counterPanel = new JPanel();
+
         counterPanel.add(Box.createVerticalStrut(15));
         counterPanel.add(new JLabel("Enter the number of exercises you did: "));
         counterPanel.add(exerciseNumber);
-
         counterPanel.setLayout(new BoxLayout(counterPanel, BoxLayout.Y_AXIS));
+
+
+
+
+
 
         int count = JOptionPane.showConfirmDialog(null, counterPanel,
                 "Number of Exercises: ",JOptionPane.OK_CANCEL_OPTION);
-        System.out.println(Integer.valueOf(exerciseNumber.getText()));
 
         if (count == JOptionPane.OK_OPTION) {
             if (Integer.valueOf(exerciseNumber.getText()) <= 0) {
-                System.out.printf("Pls enter a positive number.....");
+                JOptionPane.showMessageDialog(null,
+                        String.format("Please enter a positive number!!!"),
+                        "Enter a positive number",
+                        JOptionPane.INFORMATION_MESSAGE);
+                exerciseNumber.setText("");
             } else {
                 for (int j = 0; j < Integer.valueOf(exerciseNumber.getText()); j++) {
                     resetFields();
@@ -233,12 +247,11 @@ public class WorkoutLoggerAppGUI implements ActionListener {
                 }
                 exerciseNumber.setText("");
                 listOfWorkout.addWorkout(workout);
-                // displayWorkouts();
             }
         }
     }
 
-    // for testing: remove before commiting
+    // for testing: remove before final commit
     // EFFECTS: display all previous workouts added to listOfWorkout
     private void displayWorkouts() {
         ArrayList<Workout> displayWorkout = listOfWorkout.getListOfWorkouts();
@@ -268,7 +281,7 @@ public class WorkoutLoggerAppGUI implements ActionListener {
         initAddWorkoutPanel(addWorkoutPanel);
         addWorkoutPanel.setLayout(new BoxLayout(addWorkoutPanel, BoxLayout.Y_AXIS));
         int result = JOptionPane.showConfirmDialog(null, addWorkoutPanel,
-                "Number of Exercises.",JOptionPane.OK_CANCEL_OPTION);
+                "Exercise no" + " " + number, JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
             Exercise exercise = new Exercise(number, exerciseName.getText(), Integer.parseInt(sets.getText()),
@@ -327,8 +340,32 @@ public class WorkoutLoggerAppGUI implements ActionListener {
     }
 
 
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        //
+    }
 
+    @Override
+    public void mousePressed(MouseEvent e) {
+        //
+    }
 
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        //
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        Icon icon2 = new ImageIcon(newImg2);
+        label.setIcon(icon2);
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        Icon icon = new ImageIcon(newImg);
+        label.setIcon(icon);
+    }
 
 
 }
