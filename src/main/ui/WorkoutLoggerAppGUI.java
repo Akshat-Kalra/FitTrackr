@@ -69,9 +69,6 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         frame = new JFrame("FitTrackr");
         panel = new JPanel();
 
-        // for commit
-
-
 
         addButton = new JButton("Add workout");
         deleteButton = new JButton("Delete Workout");
@@ -251,29 +248,44 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         }
     }
 
-    // for testing: remove before final commit
-    // EFFECTS: display all previous workouts added to listOfWorkout
+
     private void displayWorkouts() {
         ArrayList<Workout> displayWorkout = listOfWorkout.getListOfWorkouts();
-        System.out.println("All previous workouts displayed below:");
+        JPanel displayPanel = new JPanel();
+        displayPanel.add(Box.createVerticalStrut(15));
+        displayPanel.setLayout(new BoxLayout(displayPanel, BoxLayout.Y_AXIS));
+        displayPanel.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
+        displayPanel.setPreferredSize(new Dimension(200, 500));
+
+
         int i = 1;
         int volume = 0;
         for (Workout workout : displayWorkout) {
-            System.out.printf("\tWorkout Number: %s%n", i);
+            displayPanel.add(new JLabel("Workout Number" + i));
+            displayPanel.add(Box.createVerticalStrut(5));
             ArrayList<Exercise> exercises = workout.getExerciseList();
             for (Exercise exercise : exercises) {
-                System.out.printf("\t Exercise Number: %s%n", exercise.getExerciseNumber());
-                System.out.printf("\t \t Exercise Name: %s%n", exercise.getExerciseName());
-                System.out.printf("\t \t Sets: %s%n", exercise.getSets());
-                System.out.printf("\t \t Reps: %s%n", exercise.getReps());
-                System.out.printf("\t \t Weight: %s%n", exercise.getWeight());
-                System.out.printf("\t \t Exercise Volume: %s%n", exercise.exerciseVolume());
+                displayPanel.add(new JLabel("\t Exercise Number:" + exercise.getExerciseNumber()));
+                displayPanel.add(Box.createVerticalStrut(5));
+                displayPanel.add(new JLabel("\t \t Exercise Name:" + exercise.getExerciseName()));
+                displayPanel.add(Box.createVerticalStrut(5));
+                displayPanel.add(new JLabel("\t \t Sets:" + exercise.getSets()));
+                displayPanel.add(Box.createVerticalStrut(5));
+                displayPanel.add(new JLabel("\t \t Reps:" + exercise.getReps()));
+                displayPanel.add(Box.createVerticalStrut(5));
+                displayPanel.add(new JLabel("\t \t Weight:" + exercise.getWeight()));
+                displayPanel.add(Box.createVerticalStrut(5));
+                displayPanel.add(new JLabel("\t \t Exercise Volume:" + exercise.exerciseVolume()));
+                displayPanel.add(Box.createVerticalStrut(5));
                 volume += exercise.exerciseVolume();
             }
             i++;
         }
         this.volume = volume;
-        System.out.printf("Total Volume: %s%n", volume);
+        displayPanel.add(new JLabel("Total Volume: " + volume));
+        JOptionPane.showMessageDialog(null, displayPanel, "Workouts", JOptionPane.PLAIN_MESSAGE);
+
+
     }
 
     private Exercise addExercisePanel(Integer number) {
