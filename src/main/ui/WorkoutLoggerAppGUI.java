@@ -45,6 +45,7 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
     private JTextField reps;
     private JTextField weight;
 
+
     ImageIcon icon = new ImageIcon("/Users/akshatkalra/Desktop/CPSC210/project_r0z2a/src/main/ui/images/weightlifting.png");
     Image image = icon.getImage();
     Image newImg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH);
@@ -98,9 +99,6 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
-
-
     }
 
 
@@ -141,7 +139,6 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         panel.add(Box.createVerticalStrut(10));
         panel.add(quitButton);
         panel.add(Box.createVerticalStrut(10));
-
     }
 
     // MODIFIES: this
@@ -156,7 +153,6 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         sets = new JTextField();
         reps = new JTextField();
         weight = new JTextField();
-
     }
 
 
@@ -171,7 +167,6 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         saveButton.addActionListener(this);
         loadButton.addActionListener(this);
         quitButton.addActionListener(this);
-
     }
 
 
@@ -184,11 +179,11 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
             deleteWorkout();
         }  else if (e.getSource() == displayWorkoutsButton) {
             displayWorkouts();
-        } //else if (e.getSource() == displayVolumeButton) {
-//            displayVolume();
-//        } else if (e.getSource() == showProgressButton) {
-//            showProgress();
-//        } else if (e.getSource() == saveButton) {
+        } else if (e.getSource() == displayVolumeButton) {
+            displayVolume();
+        } else if (e.getSource() == showProgressButton) {
+            showProgress();
+        } //else if (e.getSource() == saveButton) {
 //            saveWorkout();
 //        } else if (e.getSource() == loadButton) {
 //            loadWorkout();
@@ -201,9 +196,9 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
 
 
 
+
     private void addWorkout() {
         countExercise();
-
     }
 
     private void resetFields() {
@@ -221,11 +216,6 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         counterPanel.add(new JLabel("Enter the number of exercises you did: "));
         counterPanel.add(exerciseNumber);
         counterPanel.setLayout(new BoxLayout(counterPanel, BoxLayout.Y_AXIS));
-
-
-
-
-
 
         int count = JOptionPane.showConfirmDialog(null, counterPanel,
                 "Number of Exercises: ",JOptionPane.OK_CANCEL_OPTION);
@@ -251,11 +241,17 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
 
     private void displayWorkouts() {
         ArrayList<Workout> displayWorkout = listOfWorkout.getListOfWorkouts();
+
         JPanel displayPanel = new JPanel();
+
+
+
         displayPanel.add(Box.createVerticalStrut(15));
         displayPanel.setLayout(new BoxLayout(displayPanel, BoxLayout.Y_AXIS));
         displayPanel.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
-        displayPanel.setPreferredSize(new Dimension(200, 500));
+
+
+
 
 
         int i = 1;
@@ -276,27 +272,34 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
                 displayPanel.add(new JLabel("\t \t Weight:" + exercise.getWeight()));
                 displayPanel.add(Box.createVerticalStrut(5));
                 displayPanel.add(new JLabel("\t \t Exercise Volume:" + exercise.exerciseVolume()));
-                displayPanel.add(Box.createVerticalStrut(5));
+                displayPanel.add(Box.createVerticalStrut(10));
                 volume += exercise.exerciseVolume();
             }
             i++;
         }
         this.volume = volume;
         displayPanel.add(new JLabel("Total Volume: " + volume));
-        JOptionPane.showMessageDialog(null, displayPanel, "Workouts", JOptionPane.PLAIN_MESSAGE);
+
+        JScrollPane scrollPane = new JScrollPane(displayPanel);
+        JFrame displayFrame = new JFrame("Workouts");
+        displayFrame.getContentPane().add(scrollPane);
+        displayFrame.pack();
+        displayFrame.setVisible(true);
 
 
     }
 
+
     private Exercise addExercisePanel(Integer number) {
+        Exercise exercise;
         JPanel addWorkoutPanel = new JPanel();
         initAddWorkoutPanel(addWorkoutPanel);
         addWorkoutPanel.setLayout(new BoxLayout(addWorkoutPanel, BoxLayout.Y_AXIS));
         int result = JOptionPane.showConfirmDialog(null, addWorkoutPanel,
-                "Exercise no" + " " + number, JOptionPane.OK_CANCEL_OPTION);
+                "Exercise no" + " " + number, JOptionPane.OK_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
-            Exercise exercise = new Exercise(number, exerciseName.getText(), Integer.parseInt(sets.getText()),
+            exercise = new Exercise(number, exerciseName.getText(), Integer.parseInt(sets.getText()),
                     Integer.parseInt(reps.getText()), Integer.parseInt(weight.getText()));
             return exercise;
         }
@@ -350,6 +353,102 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         }
 
     }
+
+    private void displayVolume() {
+        int vol = 0;
+        ArrayList<Workout> displayWorkout = listOfWorkout.getListOfWorkouts();
+        for (Workout workout : displayWorkout) {
+            ArrayList<Exercise> exercises = workout.getExerciseList();
+            for (Exercise exercise : exercises) {
+                vol += exercise.exerciseVolume();
+            }
+        }
+
+        JOptionPane.showMessageDialog(null,
+                String.format("Your Total Volume is: " + vol),
+                "Total Volume",
+                JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void showProgress() {
+
+        JPanel progressPanel = new JPanel();
+
+        progressPanel.add(Box.createVerticalStrut(15));
+        exerciseName.setText("");
+        progressPanel.add(new JLabel("Enter the name of the exercise you want to see progress in (case sensitive): "));
+        progressPanel.add(exerciseName);
+        progressPanel.setLayout(new BoxLayout(progressPanel, BoxLayout.Y_AXIS));
+
+        int number = JOptionPane.showConfirmDialog(null, progressPanel,
+                "Number of Exercises: ",JOptionPane.OK_CANCEL_OPTION);
+
+        if (number == JOptionPane.OK_OPTION) {
+            if (exerciseName.getText().length() == 0) {
+                JOptionPane.showMessageDialog(null,
+                        String.format("Please enter an exercise name"),
+                        "Enter valid name",
+                        JOptionPane.INFORMATION_MESSAGE);
+                exerciseName.setText("");
+            } else {
+                if (listOfWorkout.getListOfAnExercise(exerciseName.getText()).isEmpty()) {
+                    JOptionPane.showMessageDialog(null,
+                            String.format("You haven't done this exercise"),
+                            "Enter valid name",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    displayProgress();
+                }
+            }
+        }
+
+
+    }
+
+    private void displayProgress() {
+        ArrayList<Exercise> exercises = listOfWorkout.getListOfAnExercise(exerciseName.getText());
+
+        JPanel displayProgressPanel = new JPanel();
+        displayProgressPanel.add(Box.createVerticalStrut(15));
+        displayProgressPanel.setLayout(new BoxLayout(displayProgressPanel, BoxLayout.Y_AXIS));
+        displayProgressPanel.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
+        displayProgressPanel.setPreferredSize(new Dimension(300, 500));
+
+
+        int i = 1;
+        int volume = 0;
+        for (Exercise exercise : exercises) {
+            displayProgressPanel.add(new JLabel("Day" + i));
+            displayProgressPanel.add(Box.createVerticalStrut(5));
+            displayProgressPanel.add(new JLabel("\t \t Sets:" + exercise.getSets()));
+            displayProgressPanel.add(Box.createVerticalStrut(5));
+            displayProgressPanel.add(new JLabel("\t \t Reps:" + exercise.getReps()));
+            displayProgressPanel.add(Box.createVerticalStrut(5));
+            displayProgressPanel.add(new JLabel("\t \t Weight:" + exercise.getWeight()));
+            displayProgressPanel.add(Box.createVerticalStrut(5));
+            displayProgressPanel.add(new JLabel("\t \t Exercise Volume:" + exercise.exerciseVolume()));
+            displayProgressPanel.add(Box.createVerticalStrut(5));
+            volume += exercise.exerciseVolume();
+            i++;
+        }
+        this.volume = volume;
+        displayProgressPanel.add(new JLabel("Total Volume: " + volume));
+        int volDay1 = exercises.get(0).exerciseVolume();
+        int volDay2 = exercises.get(exercises.size() - 1).exerciseVolume();
+
+        if ((volDay2 - volDay1) == 0) {
+            System.out.printf("No progress since Day 1......Work Harder!!!");
+            displayProgressPanel.add(new JLabel("No progress since Day 1......Work Harder!!!"));
+        } else {
+            displayProgressPanel.add(new JLabel("Damnn boyyy....you had" + " " + (volDay2 - volDay1) + " " + "increase in volume since Day 1: " ));
+        }
+        JOptionPane.showMessageDialog(null, displayProgressPanel, "Progress:" + exerciseName.getText(), JOptionPane.PLAIN_MESSAGE);
+
+
+
+    }
+
+
 
 
     @Override
