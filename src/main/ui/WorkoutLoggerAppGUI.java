@@ -16,6 +16,10 @@ import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+// WorkoutLoggerApplicationGUI
+/* ==== Source Attribution / Reference =====
+
+ */
 
 public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
 
@@ -193,10 +197,6 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
 
 
 
-    private void addWorkout() {
-        countExercise();
-    }
-
     private void resetFields() {
         exerciseName.setText("");
         sets.setText("");
@@ -204,12 +204,14 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         weight.setText("");
     }
 
-    private void countExercise() {
+    // MODIFIES: this
+    // EFFECTS: adds a workout to the listOfWorkout
+    private void addWorkout() {
         Workout workout = new Workout();
         JPanel counterPanel = new JPanel();
 
 
-        countExerciseHelper(counterPanel);
+        addWorkoutHelper(counterPanel);
 
         int count = JOptionPane.showConfirmDialog(null, counterPanel,
                 "Number of Exercises: ",JOptionPane.OK_CANCEL_OPTION);
@@ -232,7 +234,9 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         }
     }
 
-    private void countExerciseHelper(JPanel counterPanel) {
+    // MODIFIES: this
+    // EFFECTS: helper to addWorkout(), helps in designing the panel to add the number of exercises.
+    private void addWorkoutHelper(JPanel counterPanel) {
         counterPanel.add(Box.createVerticalStrut(15));
         counterPanel.add(new JLabel("Enter the number of exercises you did: "));
         counterPanel.add(exerciseNumber);
@@ -240,7 +244,47 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: helper to addWorkout(), displays a panel to the user to enter the details of the exercise and then
+    //          returns the Exercise.
+    private Exercise addExercisePanel(Integer number) {
+        Exercise exercise;
+        JPanel addWorkoutPanel = new JPanel();
+        initAddWorkoutPanel(addWorkoutPanel);
+        addWorkoutPanel.setLayout(new BoxLayout(addWorkoutPanel, BoxLayout.Y_AXIS));
+        int result = JOptionPane.showConfirmDialog(null, addWorkoutPanel,
+                "Exercise no" + " " + number, JOptionPane.OK_OPTION);
 
+        if (result == JOptionPane.OK_OPTION) {
+            exercise = new Exercise(number, exerciseName.getText(), Integer.parseInt(sets.getText()),
+                    Integer.parseInt(reps.getText()), Integer.parseInt(weight.getText()));
+            return exercise;
+        }
+
+        return new Exercise(1, "TEST", 1, 1, 1);
+
+
+    }
+
+    // MODIFIES: this
+    // EFFECTS: helper to addExercisePanel(), initializes the panel that asks for the details of the exercise.
+    private void initAddWorkoutPanel(JPanel addWorkoutPanel) {
+        addWorkoutPanel.add(Box.createVerticalStrut(10));
+        addWorkoutPanel.add(new JLabel("Enter name of the exercise: "));
+        addWorkoutPanel.add(exerciseName);
+        addWorkoutPanel.add(Box.createVerticalStrut(10));
+        addWorkoutPanel.add(new JLabel("Enter number of sets: "));
+        addWorkoutPanel.add(sets);
+        addWorkoutPanel.add(Box.createVerticalStrut(10));
+        addWorkoutPanel.add(new JLabel("Enter number of reps: "));
+        addWorkoutPanel.add(reps);
+        addWorkoutPanel.add(Box.createVerticalStrut(10));
+        addWorkoutPanel.add(new JLabel("Enter weight (lbs): "));
+        addWorkoutPanel.add(weight);
+    }
+
+
+    // EFFECTS: display all previous workouts added to listOfWorkout
     private void displayWorkouts() {
         ArrayList<Workout> displayWorkout = listOfWorkout.getListOfWorkouts();
 
@@ -265,6 +309,8 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: helper to displayWorkouts(), helps in the adding the workouts to the JPanel.
     private void displayWorkoutsHelper(JPanel displayPanel, ArrayList<Workout> displayWorkout, int i) {
 
         int volume = 0;
@@ -293,41 +339,11 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
     }
 
 
-    private Exercise addExercisePanel(Integer number) {
-        Exercise exercise;
-        JPanel addWorkoutPanel = new JPanel();
-        initAddWorkoutPanel(addWorkoutPanel);
-        addWorkoutPanel.setLayout(new BoxLayout(addWorkoutPanel, BoxLayout.Y_AXIS));
-        int result = JOptionPane.showConfirmDialog(null, addWorkoutPanel,
-                "Exercise no" + " " + number, JOptionPane.OK_OPTION);
-
-        if (result == JOptionPane.OK_OPTION) {
-            exercise = new Exercise(number, exerciseName.getText(), Integer.parseInt(sets.getText()),
-                    Integer.parseInt(reps.getText()), Integer.parseInt(weight.getText()));
-            return exercise;
-        }
-
-        return new Exercise(1, "TEST", 1, 1, 1);
 
 
-    }
 
-    private void initAddWorkoutPanel(JPanel addWorkoutPanel) {
-        addWorkoutPanel.add(Box.createVerticalStrut(10));
-        addWorkoutPanel.add(new JLabel("Enter name of the exercise: "));
-        addWorkoutPanel.add(exerciseName);
-        addWorkoutPanel.add(Box.createVerticalStrut(10));
-        addWorkoutPanel.add(new JLabel("Enter number of sets: "));
-        addWorkoutPanel.add(sets);
-        addWorkoutPanel.add(Box.createVerticalStrut(10));
-        addWorkoutPanel.add(new JLabel("Enter number of reps: "));
-        addWorkoutPanel.add(reps);
-        addWorkoutPanel.add(Box.createVerticalStrut(10));
-        addWorkoutPanel.add(new JLabel("Enter weight (lbs): "));
-        addWorkoutPanel.add(weight);
-    }
-
-
+    // MODIFIES: this
+    // EFFECTS: removes the inputted number of workout from listOfWorkout.
     private void deleteWorkout() {
 
         JTextField number = new JTextField();
@@ -357,6 +373,7 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
 
     }
 
+    // EFFECTS: displays the total volume from all the workouts in listOfWorkout.
     private void displayVolume() {
         int vol = 0;
         ArrayList<Workout> displayWorkout = listOfWorkout.getListOfWorkouts();
@@ -373,6 +390,10 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
+
+    // EFFECTS: displays every time you did the provided exercises with sets, reps and weight and volume
+    //          also displays the difference in volume from when you did the exercise most recently from when you
+    //          did the exercise for the first time.
     private void showProgress() {
 
         JPanel progressPanel = new JPanel();
@@ -404,6 +425,9 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: helper to showProgress(), initializes the panel that asks for the name of the exercise that you want
+    //          to see progress in.
     private void showProgressHelper(JPanel progressPanel) {
         progressPanel.add(Box.createVerticalStrut(15));
         exerciseName.setText("");
@@ -412,6 +436,7 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         progressPanel.setLayout(new BoxLayout(progressPanel, BoxLayout.Y_AXIS));
     }
 
+    // EFFECTS: helper to showProgress(), displays the progress in the inputted exercise.
     private void displayProgress() {
         ArrayList<Exercise> exercises = listOfWorkout.getListOfAnExercise(exerciseName.getText());
 
@@ -419,7 +444,7 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         displayProgressPanel.add(Box.createVerticalStrut(15));
         displayProgressPanel.setLayout(new BoxLayout(displayProgressPanel, BoxLayout.Y_AXIS));
         displayProgressPanel.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
-        displayProgressPanel.setPreferredSize(new Dimension(300, 500));
+        displayProgressPanel.setPreferredSize(new Dimension(700, 500));
 
 
         displayProgressHelper(exercises, displayProgressPanel);
@@ -440,6 +465,7 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
 
     }
 
+    // EFFECTS: helper to displayProgress(), helps in the adding the exercises to the displayProgressPanel.
     private void displayProgressHelper(ArrayList<Exercise> exercises, JPanel displayProgressPanel) {
         int i = 1;
         int volume = 0;
@@ -492,6 +518,8 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: quits the application.
     private void quitApplication() {
         System.exit(0);
         frame.dispose();
@@ -513,12 +541,16 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         //
     }
 
+    // MODIFIES: this
+    // EFFECTS: changes the icon set to label when the mouse enters the label.
     @Override
     public void mouseEntered(MouseEvent e) {
         Icon icon2 = new ImageIcon(newImg2);
         label.setIcon(icon2);
     }
 
+    // MODIFIES: this
+    // EFFECTS: changes the icon set to label when the mouse exits the label.
     @Override
     public void mouseExited(MouseEvent e) {
         Icon icon = new ImageIcon(newImg);

@@ -35,5 +35,26 @@
         "name": "bench",
         "weight": 99,
         "no.": 1
+    }]},
+    {"workout": [{
+        "reps": 10,
+        "sets": 3,
+        "name": "bench",
+        "weight": 90,
+        "no.": 1
+    }]},
+    {"workout": [{
+        "reps": 10,
+        "sets": 4,
+        "name": "bench",
+        "weight": 100,
+        "no.": 1
+    }]},
+    {"workout": [{
+        "reps": 10,
+        "sets": 5,
+        "name": "bench",
+        "weight": 100,
+        "no.": 1
     }]}
 ]}
