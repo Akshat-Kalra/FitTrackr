@@ -331,7 +331,7 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
                 displayPanel.add(new JLabel("\t \t Weight:" + exercise.getWeight()));
                 displayPanel.add(Box.createVerticalStrut(5));
                 displayPanel.add(new JLabel("\t \t Exercise Volume:" + exercise.exerciseVolume()));
-                displayPanel.add(Box.createVerticalStrut(10));
+                displayPanel.add(Box.createVerticalStrut(20));
                 volume += exercise.exerciseVolume();
             }
             i++;
