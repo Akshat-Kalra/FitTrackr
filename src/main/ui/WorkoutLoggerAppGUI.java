@@ -119,7 +119,6 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
 
     // MODIFIES: this
     // EFFECTS: Adds required button to panel
-
     private void addButtons(JPanel panel) {
         panel.add(label);
         panel.add(Box.createVerticalStrut(10));

@@ -1,76 +1,39 @@
 {"workoutLog": [
     {"workout": [
         {
-            "reps": 1,
-            "sets": 1,
-            "name": "TEST",
-            "weight": 1,
-            "no.": 1
-        },
-        {
-            "reps": 1,
-            "sets": 1,
-            "name": "TEST",
-            "weight": 1,
-            "no.": 1
-        },
-        {
-            "reps": 1,
-            "sets": 1,
-            "name": "TEST",
-            "weight": 1,
-            "no.": 1
-        },
-        {
-            "reps": 1,
-            "sets": 1,
-            "name": "TEST",
-            "weight": 1,
-            "no.": 1
-        },
-        {
-            "reps": 1,
-            "sets": 1,
-            "name": "TEST",
-            "weight": 1,
-            "no.": 1
-        },
-        {
-            "reps": 1,
-            "sets": 1,
-            "name": "TEST",
-            "weight": 1,
-            "no.": 1
-        }
-    ]},
-    {"workout": [
-        {
             "reps": 10,
             "sets": 3,
-            "name": "BENCH",
+            "name": "bench",
             "weight": 90,
             "no.": 1
         },
         {
             "reps": 10,
             "sets": 4,
-            "name": "ROWS",
-            "weight": 90,
+            "name": "rows",
+            "weight": 80,
             "no.": 2
         },
         {
             "reps": 10,
-            "sets": 2,
-            "name": "PULLUPS",
-            "weight": 90,
-            "no.": 3
-        },
-        {
-            "reps": 10,
-            "sets": 2,
-            "name": "ABCD",
+            "sets": 3,
+            "name": "pushdowns",
             "weight": 80,
-            "no.": 4
+            "no.": 3
         }
-    ]}
+    ]},
+    {"workout": [{
+        "reps": 10,
+        "sets": 3,
+        "name": "bench",
+        "weight": 99,
+        "no.": 1
+    }]},
+    {"workout": [{
+        "reps": 11,
+        "sets": 3,
+        "name": "bench",
+        "weight": 99,
+        "no.": 1
+    }]}
 ]}
