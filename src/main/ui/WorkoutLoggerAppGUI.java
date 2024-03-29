@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 // WorkoutLoggerApplicationGUI
 /* ==== Source Attribution / Reference =====
-
+// Learned swing syntax from https://www.youtube.com/watch?v=Kmgo00avvEw&pp=ygUKamF2YSBzd2luZw%3D%3D
  */
 
 public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
@@ -235,7 +235,7 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         }
     }
 
-    // MODIFIES: this
+    // MODIFIES: counterPanel
     // EFFECTS: helper to addWorkout(), helps in designing the panel to add the number of exercises.
     private void addWorkoutHelper(JPanel counterPanel) {
         counterPanel.add(Box.createVerticalStrut(15));
@@ -267,7 +267,7 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
 
     }
 
-    // MODIFIES: this
+    // MODIFIES: addWorkoutPanel
     // EFFECTS: helper to addExercisePanel(), initializes the panel that asks for the details of the exercise.
     private void initAddWorkoutPanel(JPanel addWorkoutPanel) {
         addWorkoutPanel.add(Box.createVerticalStrut(10));
