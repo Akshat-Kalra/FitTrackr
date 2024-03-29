@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 // WorkoutLoggerApplicationGUI
 /* ==== Source Attribution / Reference =====
-// Learned swing syntax from https://www.youtube.com/watch?v=Kmgo00avvEw&pp=ygUKamF2YSBzd2luZw%3D%3D
+  Learned swing syntax from https://www.youtube.com/watch?v=Kmgo00avvEw&pp=ygUKamF2YSBzd2luZw%3D%3D
  */
 
 public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
