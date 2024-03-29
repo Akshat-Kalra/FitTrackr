@@ -50,12 +50,11 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
     private JTextField weight;
 
 
-    ImageIcon icon =
-            new ImageIcon("/Users/akshatkalra/Desktop/CPSC210/project_r0z2a/src/main/ui/images/weightlifting.png");
+    ImageIcon icon = new ImageIcon("src/main/ui/images/weightlifting.png");
     Image image = icon.getImage();
     Image newImg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH);
 
-    ImageIcon icon2 = new ImageIcon("/Users/akshatkalra/Desktop/CPSC210/project_r0z2a/src/main/ui/images/dumbbell.png");
+    ImageIcon icon2 = new ImageIcon("src/main/ui/images/dumbbell.png");
     Image image2 = icon2.getImage();
     Image newImg2 = image2.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH);
 
