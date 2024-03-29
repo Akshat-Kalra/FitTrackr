@@ -8,8 +8,6 @@
 - The application will store user workouts including exercises, sets, reps
 and weight lifted. The application will also calculate the total workout volume and will store it as well.
 - The application will also let the user see their previous workouts and the total volume they performed in that workout.
-- The application will also generate graphical visualizations that will display the trend in user's total workout volume
-over days and weeks, which will let the user know if they are making progress or not.
 
 **Who will use it?**
 
