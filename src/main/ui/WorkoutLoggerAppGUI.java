@@ -46,7 +46,8 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
     private JTextField weight;
 
 
-    ImageIcon icon = new ImageIcon("/Users/akshatkalra/Desktop/CPSC210/project_r0z2a/src/main/ui/images/weightlifting.png");
+    ImageIcon icon =
+            new ImageIcon("/Users/akshatkalra/Desktop/CPSC210/project_r0z2a/src/main/ui/images/weightlifting.png");
     Image image = icon.getImage();
     Image newImg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH);
 
@@ -65,7 +66,6 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
 
     // MODIFIES: this
     // EFFECTS: Initializes the GUI of the application
-
     private void initGUI() {
         frame = new JFrame("FitTrackr");
         panel = new JPanel();
@@ -183,17 +183,14 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
             displayVolume();
         } else if (e.getSource() == showProgressButton) {
             showProgress();
-        } //else if (e.getSource() == saveButton) {
-//            saveWorkout();
-//        } else if (e.getSource() == loadButton) {
-//            loadWorkout();
-//        } else if (e.getSource() == quitButton) {
-//            quitApplication();
-//        } else {
-//            System.out.println("Selection not valid...");
-//        }
+        } else if (e.getSource() == saveButton) {
+            saveWorkout();
+        } else if (e.getSource() == loadButton) {
+            loadWorkout();
+        } else if (e.getSource() == quitButton) {
+            quitApplication();
+        }
     }
-
 
 
 
@@ -212,10 +209,8 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         Workout workout = new Workout();
         JPanel counterPanel = new JPanel();
 
-        counterPanel.add(Box.createVerticalStrut(15));
-        counterPanel.add(new JLabel("Enter the number of exercises you did: "));
-        counterPanel.add(exerciseNumber);
-        counterPanel.setLayout(new BoxLayout(counterPanel, BoxLayout.Y_AXIS));
+
+        countExerciseHelper(counterPanel);
 
         int count = JOptionPane.showConfirmDialog(null, counterPanel,
                 "Number of Exercises: ",JOptionPane.OK_CANCEL_OPTION);
@@ -238,23 +233,41 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         }
     }
 
+    private void countExerciseHelper(JPanel counterPanel) {
+        counterPanel.add(Box.createVerticalStrut(15));
+        counterPanel.add(new JLabel("Enter the number of exercises you did: "));
+        counterPanel.add(exerciseNumber);
+        counterPanel.setLayout(new BoxLayout(counterPanel, BoxLayout.Y_AXIS));
+
+    }
+
 
     private void displayWorkouts() {
         ArrayList<Workout> displayWorkout = listOfWorkout.getListOfWorkouts();
 
         JPanel displayPanel = new JPanel();
 
-
-
         displayPanel.add(Box.createVerticalStrut(15));
         displayPanel.setLayout(new BoxLayout(displayPanel, BoxLayout.Y_AXIS));
         displayPanel.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
 
+        displayWorkoutsHelper(displayPanel, displayWorkout,1);
+        displayPanel.add(new JLabel("Total Volume: " + volume));
+
+        JScrollPane scrollPane = new JScrollPane(displayPanel);
+        scrollPane.setPreferredSize(new Dimension(700, 500));
+        JFrame displayFrame = new JFrame("Workouts");
+
+        displayFrame.getContentPane().add(scrollPane);
+        displayFrame.pack();
+        displayFrame.setVisible(true);
 
 
 
+    }
 
-        int i = 1;
+    private void displayWorkoutsHelper(JPanel displayPanel, ArrayList<Workout> displayWorkout, int i) {
+
         int volume = 0;
         for (Workout workout : displayWorkout) {
             displayPanel.add(new JLabel("Workout Number" + i));
@@ -278,15 +291,6 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
             i++;
         }
         this.volume = volume;
-        displayPanel.add(new JLabel("Total Volume: " + volume));
-
-        JScrollPane scrollPane = new JScrollPane(displayPanel);
-        JFrame displayFrame = new JFrame("Workouts");
-        displayFrame.getContentPane().add(scrollPane);
-        displayFrame.pack();
-        displayFrame.setVisible(true);
-
-
     }
 
 
@@ -374,11 +378,7 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
 
         JPanel progressPanel = new JPanel();
 
-        progressPanel.add(Box.createVerticalStrut(15));
-        exerciseName.setText("");
-        progressPanel.add(new JLabel("Enter the name of the exercise you want to see progress in (case sensitive): "));
-        progressPanel.add(exerciseName);
-        progressPanel.setLayout(new BoxLayout(progressPanel, BoxLayout.Y_AXIS));
+        showProgressHelper(progressPanel);
 
         int number = JOptionPane.showConfirmDialog(null, progressPanel,
                 "Number of Exercises: ",JOptionPane.OK_CANCEL_OPTION);
@@ -405,6 +405,14 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
 
     }
 
+    private void showProgressHelper(JPanel progressPanel) {
+        progressPanel.add(Box.createVerticalStrut(15));
+        exerciseName.setText("");
+        progressPanel.add(new JLabel("Enter the name of the exercise you want to see progress in (case sensitive): "));
+        progressPanel.add(exerciseName);
+        progressPanel.setLayout(new BoxLayout(progressPanel, BoxLayout.Y_AXIS));
+    }
+
     private void displayProgress() {
         ArrayList<Exercise> exercises = listOfWorkout.getListOfAnExercise(exerciseName.getText());
 
@@ -415,6 +423,25 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         displayProgressPanel.setPreferredSize(new Dimension(300, 500));
 
 
+        displayProgressHelper(exercises, displayProgressPanel);
+
+        int volDay1 = exercises.get(0).exerciseVolume();
+        int volDay2 = exercises.get(exercises.size() - 1).exerciseVolume();
+
+        if ((volDay2 - volDay1) == 0) {
+            displayProgressPanel.add(new JLabel("No progress since Day 1......Work Harder!!!"));
+        } else {
+            displayProgressPanel.add(new JLabel("Damnn boyyy....you had" + " "
+                    + (volDay2 - volDay1) + " " + "increase in volume since Day 1: "));
+        }
+        JOptionPane.showMessageDialog(null, displayProgressPanel,
+                "Progress:" + exerciseName.getText(), JOptionPane.PLAIN_MESSAGE);
+
+
+
+    }
+
+    private void displayProgressHelper(ArrayList<Exercise> exercises, JPanel displayProgressPanel) {
         int i = 1;
         int volume = 0;
         for (Exercise exercise : exercises) {
@@ -433,22 +460,43 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         }
         this.volume = volume;
         displayProgressPanel.add(new JLabel("Total Volume: " + volume));
-        int volDay1 = exercises.get(0).exerciseVolume();
-        int volDay2 = exercises.get(exercises.size() - 1).exerciseVolume();
-
-        if ((volDay2 - volDay1) == 0) {
-            System.out.printf("No progress since Day 1......Work Harder!!!");
-            displayProgressPanel.add(new JLabel("No progress since Day 1......Work Harder!!!"));
-        } else {
-            displayProgressPanel.add(new JLabel("Damnn boyyy....you had" + " " + (volDay2 - volDay1) + " " + "increase in volume since Day 1: " ));
-        }
-        JOptionPane.showMessageDialog(null, displayProgressPanel, "Progress:" + exerciseName.getText(), JOptionPane.PLAIN_MESSAGE);
-
-
-
     }
 
+    // EFFECTS: saves the workoutLog to file
+    private void saveWorkout() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(listOfWorkout);
+            jsonWriter.close();
+            JOptionPane.showMessageDialog(null,
+                    String.format("Saved " + "Workout Log" + " to " + JSON_STORE), "Successful",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null,
+                    String.format("Unable to save to file: " + JSON_STORE), "Unsuccessful",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
 
+    // MODIFIES: this
+    // EFFECTS: loads workoutLog from file
+    private void loadWorkout() {
+        try {
+            listOfWorkout = jsonReader.read();
+            JOptionPane.showMessageDialog(null,
+                    String.format("Loaded " + "Workout Log" + " from " + JSON_STORE), "Successful",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null,
+                    String.format("Unable to read from file: " + JSON_STORE), "Unsuccessful",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    private void quitApplication() {
+        System.exit(0);
+        frame.dispose();
+    }
 
 
     @Override
