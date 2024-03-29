@@ -362,7 +362,7 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
                     && Integer.valueOf(number.getText()) >= 1) {
                 if (listOfWorkout.removeWorkoutFromIndex(Integer.valueOf(number.getText()) - 1)) {
                     JOptionPane.showMessageDialog(null,
-                            "Workout Succesfully Removed", "Successful",
+                            "Workout Successfully Removed", "Successful",
                             JOptionPane.INFORMATION_MESSAGE);
                 }
             } else {
