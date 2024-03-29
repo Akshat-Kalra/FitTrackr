@@ -62,7 +62,7 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
     // MODIFIES: this
     // EFFECTS: runs the WorkoutLogger application with GUI
     public WorkoutLoggerAppGUI() {
-        initComponents();
+        initFields();
         initGUI();
         addListeners();
     }
@@ -94,7 +94,7 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         panel.setPreferredSize(new Dimension(500, 700));
 
 
-        initAlignments();
+        setAlignments();
 
         addButtons(panel);
 
@@ -107,7 +107,7 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
 
     // MODIFIES: this
     // EFFECTS: Initializes the elements alignment
-    private void initAlignments() {
+    private void setAlignments() {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
         addButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -145,7 +145,7 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
 
     // MODIFIES: this
     // EFFECTS: initializes fields
-    private void initComponents() {
+    private void initFields() {
         listOfWorkout = new WorkoutLog();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
