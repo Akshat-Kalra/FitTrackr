@@ -197,6 +197,8 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
 
 
 
+    // MODIFIES: this
+    // EFFECTS: resets the fields.
     private void resetFields() {
         exerciseName.setText("");
         sets.setText("");
