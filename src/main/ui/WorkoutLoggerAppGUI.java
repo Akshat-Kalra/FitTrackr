@@ -444,10 +444,10 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         displayProgressPanel.add(Box.createVerticalStrut(15));
         displayProgressPanel.setLayout(new BoxLayout(displayProgressPanel, BoxLayout.Y_AXIS));
         displayProgressPanel.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
-        displayProgressPanel.setPreferredSize(new Dimension(700, 500));
 
 
         displayProgressHelper(exercises, displayProgressPanel);
+
 
         int volDay1 = exercises.get(0).exerciseVolume();
         int volDay2 = exercises.get(exercises.size() - 1).exerciseVolume();
@@ -456,11 +456,16 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
             displayProgressPanel.add(new JLabel("No progress since Day 1......Work Harder!!!"));
         } else {
             displayProgressPanel.add(new JLabel("Damnn boyyy....you had" + " "
-                    + (volDay2 - volDay1) + " " + "increase in volume since Day 1: "));
+                    + (volDay2 - volDay1) + " " + "increase in volume since Day 1"));
         }
-        JOptionPane.showMessageDialog(null, displayProgressPanel,
-                "Progress:" + exerciseName.getText(), JOptionPane.PLAIN_MESSAGE);
 
+        JScrollPane scrollPane2 = new JScrollPane(displayProgressPanel);
+        scrollPane2.setPreferredSize(new Dimension(700, 500));
+        JFrame displayProgressFrame = new JFrame("Progress: " + exerciseName.getText());
+
+        displayProgressFrame.getContentPane().add(scrollPane2);
+        displayProgressFrame.pack();
+        displayProgressFrame.setVisible(true);
 
 
     }
