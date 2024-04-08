@@ -79,8 +79,14 @@ image.
 
 
 ## Phase 4: Task 2
-
-
+- Sun Apr 07 19:27:47 PDT 2024
+- Bench Added to Workout
+- Sun Apr 07 19:27:58 PDT 2024
+- Rows Added to Workout
+- Sun Apr 07 19:27:58 PDT 2024
+- Workout Added to Logger
+- Sun Apr 07 19:28:04 PDT 2024
+- Workout 1 removed from Logger
 
 
 ## Phase 4: Task 3
