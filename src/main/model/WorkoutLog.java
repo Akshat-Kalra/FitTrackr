@@ -23,6 +23,7 @@ public class WorkoutLog implements Writable {
      */
     public boolean addWorkout(Workout workout) {
         listOfWorkouts.add(workout);
+        EventLog.getInstance().logEvent(new Event("Workout Added to Logger"));
         return true;
     }
 
@@ -42,6 +43,7 @@ public class WorkoutLog implements Writable {
      */
     public boolean removeWorkoutFromIndex(int number) {
         listOfWorkouts.remove(number);
+        EventLog.getInstance().logEvent(new Event("Workout " + (number + 1) + " removed from Logger"));
         return true;
     }
 

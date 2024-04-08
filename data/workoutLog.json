@@ -1,23 +1,39 @@
-{"workoutLog": [{"workout": [
-    {
-        "reps": 10,
-        "sets": 3,
-        "name": "bench",
-        "weight": 90,
-        "no.": 1
-    },
-    {
+{"workoutLog": [
+    {"workout": [
+        {
+            "reps": 1,
+            "sets": 1,
+            "name": "TEST",
+            "weight": 1,
+            "no.": 1
+        },
+        {
+            "reps": 1,
+            "sets": 1,
+            "name": "TEST",
+            "weight": 1,
+            "no.": 1
+        },
+        {
+            "reps": 1,
+            "sets": 1,
+            "name": "TEST",
+            "weight": 1,
+            "no.": 1
+        },
+        {
+            "reps": 1,
+            "sets": 1,
+            "name": "TEST",
+            "weight": 1,
+            "no.": 1
+        }
+    ]},
+    {"workout": [{
         "reps": 10,
         "sets": 4,
-        "name": "rows",
-        "weight": 90,
-        "no.": 2
-    },
-    {
-        "reps": 1,
-        "sets": 1,
-        "name": "TEST",
-        "weight": 1,
+        "name": "bench",
+        "weight": 100,
         "no.": 1
-    }
-]}]}
+    }]}
+]}

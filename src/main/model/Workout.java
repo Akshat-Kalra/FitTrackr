@@ -24,6 +24,7 @@ public class Workout implements Writable {
      */
     public boolean addExercise(Exercise exercise) {
         this.exerciseList.add(exercise);
+        EventLog.getInstance().logEvent(new Event(exercise.getExerciseName() + " Added to Workout"));
         return true;
     }
 

@@ -1,21 +1,20 @@
 package ui;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
-import model.Workout;
-import model.WorkoutLog;
-import model.Exercise;
+import model.*;
+import model.Event;
+import model.EventLog;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import javax.swing.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 // WorkoutLoggerApplicationGUI
 /* ==== Source Attribution / Reference =====
   Learned swing syntax from https://www.youtube.com/watch?v=Kmgo00avvEw&pp=ygUKamF2YSBzd2luZw%3D%3D
@@ -62,9 +61,27 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
     // MODIFIES: this
     // EFFECTS: runs the WorkoutLogger application with GUI
     public WorkoutLoggerAppGUI() {
-        initFields();
+        listOfWorkout = new WorkoutLog();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+
+        exerciseNumber = new JTextField();
+        exerciseName = new JTextField();
+        sets = new JTextField();
+        reps = new JTextField();
+        weight = new JTextField();
+
         initGUI();
-        addListeners();
+
+        addButton.addActionListener(this);
+        deleteButton.addActionListener(this);
+        displayWorkoutsButton.addActionListener(this);
+        displayVolumeButton.addActionListener(this);
+        showProgressButton.addActionListener(this);
+        saveButton.addActionListener(this);
+        loadButton.addActionListener(this);
+        quitButton.addActionListener(this);
+
     }
 
     // MODIFIES: this
@@ -72,8 +89,6 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
     private void initGUI() {
         frame = new JFrame("FitTrackr");
         panel = new JPanel();
-
-
         addButton = new JButton("Add workout");
         deleteButton = new JButton("Delete Workout");
         displayWorkoutsButton = new JButton("Display Workouts");
@@ -82,22 +97,14 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         saveButton = new JButton("Save Workouts");
         loadButton = new JButton("Load Previous Workouts");
         quitButton = new JButton("QUIT");
-
         label = new JLabel();
         label.addMouseListener(this);
         Icon icon = new ImageIcon(newImg);
         label.setIcon(icon);
-
-
-
         panel.setBorder(BorderFactory.createEmptyBorder(20,10,20,10));
         panel.setPreferredSize(new Dimension(500, 700));
-
-
         setAlignments();
-
         addButtons(panel);
-
         frame.add(panel, 0);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -141,34 +148,6 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         panel.add(Box.createVerticalStrut(10));
         panel.add(quitButton);
         panel.add(Box.createVerticalStrut(10));
-    }
-
-    // MODIFIES: this
-    // EFFECTS: initializes fields
-    private void initFields() {
-        listOfWorkout = new WorkoutLog();
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
-
-        exerciseNumber = new JTextField();
-        exerciseName = new JTextField();
-        sets = new JTextField();
-        reps = new JTextField();
-        weight = new JTextField();
-    }
-
-
-    // MODIFIES: this
-    // EFFECTS: Adds listeners to the buttons
-    private void addListeners() {
-        addButton.addActionListener(this);
-        deleteButton.addActionListener(this);
-        displayWorkoutsButton.addActionListener(this);
-        displayVolumeButton.addActionListener(this);
-        showProgressButton.addActionListener(this);
-        saveButton.addActionListener(this);
-        loadButton.addActionListener(this);
-        quitButton.addActionListener(this);
     }
 
 
@@ -527,6 +506,9 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
     // MODIFIES: this
     // EFFECTS: quits the application.
     private void quitApplication() {
+        for (Event el : EventLog.getInstance()) {
+            System.out.println(el.toString());
+        }
         System.exit(0);
         frame.dispose();
     }
@@ -562,6 +544,4 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         Icon icon = new ImageIcon(newImg);
         label.setIcon(icon);
     }
-
-
 }
