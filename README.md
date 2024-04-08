@@ -90,7 +90,8 @@ image.
 
 
 ## Phase 4: Task 3
-Potential Refactoring:
-
+- Potential Refactoring: I will implement the singleton design pattern to WorkoutLog which will ensure that there is only 
+a single instance of WorkoutLog throughout the application. This will prevent the unknown creation of another instance 
+of the WorkoutLog class and prevent unwanted duplication.
 
 <img height="700" width="700" src="UML class.png"/>
