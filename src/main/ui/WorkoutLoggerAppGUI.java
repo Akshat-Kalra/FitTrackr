@@ -14,7 +14,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 // WorkoutLoggerApplicationGUI
 /* ==== Source Attribution / Reference =====
   Learned swing syntax from https://www.youtube.com/watch?v=Kmgo00avvEw&pp=ygUKamF2YSBzd2luZw%3D%3D
