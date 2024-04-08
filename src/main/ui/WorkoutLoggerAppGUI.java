@@ -89,14 +89,7 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
     private void initGUI() {
         frame = new JFrame("FitTrackr");
         panel = new JPanel();
-        addButton = new JButton("Add workout");
-        deleteButton = new JButton("Delete Workout");
-        displayWorkoutsButton = new JButton("Display Workouts");
-        displayVolumeButton = new JButton("Display Total Volume");
-        showProgressButton = new JButton("Show progress");
-        saveButton = new JButton("Save Workouts");
-        loadButton = new JButton("Load Previous Workouts");
-        quitButton = new JButton("QUIT");
+        initButtons();
         label = new JLabel();
         label.addMouseListener(this);
         Icon icon = new ImageIcon(newImg);
@@ -105,6 +98,12 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         panel.setPreferredSize(new Dimension(500, 700));
         setAlignments();
         addButtons(panel);
+        setFrame();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Helper to initGUI(): sets the properties of the JFrame.
+    private void setFrame() {
         frame.add(panel, 0);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -119,6 +118,19 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
                 System.exit(0);
             }
         });
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Helper to initGUI(): Initializes the Buttons in the GUI of the application
+    private void initButtons() {
+        addButton = new JButton("Add workout");
+        deleteButton = new JButton("Delete Workout");
+        displayWorkoutsButton = new JButton("Display Workouts");
+        displayVolumeButton = new JButton("Display Total Volume");
+        showProgressButton = new JButton("Show progress");
+        saveButton = new JButton("Save Workouts");
+        loadButton = new JButton("Load Previous Workouts");
+        quitButton = new JButton("QUIT");
     }
 
 
