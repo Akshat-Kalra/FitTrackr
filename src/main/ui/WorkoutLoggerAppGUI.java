@@ -139,36 +139,51 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
         addButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        addButton.setMaximumSize(new Dimension(150, 50));
+
         deleteButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        deleteButton.setMaximumSize(new Dimension(150, 50));
+
         displayWorkoutsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        displayWorkoutsButton.setMaximumSize(new Dimension(200, 50));
+
         displayVolumeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        displayVolumeButton.setMaximumSize(new Dimension(200, 50));
+
         showProgressButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        showProgressButton.setMaximumSize(new Dimension(150, 50));
+
         saveButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        saveButton.setMaximumSize(new Dimension(150, 50));
+
         loadButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        loadButton.setMaximumSize(new Dimension(200, 50));
+
         quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        quitButton.setMaximumSize(new Dimension(100, 50));
     }
 
     // MODIFIES: this
     // EFFECTS: Adds required button to panel
     private void addButtons(JPanel panel) {
         panel.add(label);
-        panel.add(Box.createVerticalStrut(10));
+        panel.add(Box.createVerticalStrut(15));
         panel.add(addButton);
-        panel.add(Box.createVerticalStrut(10));
+        panel.add(Box.createVerticalStrut(15));
         panel.add(deleteButton);
-        panel.add(Box.createVerticalStrut(10));
+        panel.add(Box.createVerticalStrut(15));
         panel.add(displayWorkoutsButton);
-        panel.add(Box.createVerticalStrut(10));
+        panel.add(Box.createVerticalStrut(15));
         panel.add(displayVolumeButton);
-        panel.add(Box.createVerticalStrut(10));
+        panel.add(Box.createVerticalStrut(15));
         panel.add(showProgressButton);
-        panel.add(Box.createVerticalStrut(10));
+        panel.add(Box.createVerticalStrut(15));
         panel.add(saveButton);
-        panel.add(Box.createVerticalStrut(10));
+        panel.add(Box.createVerticalStrut(15));
         panel.add(loadButton);
-        panel.add(Box.createVerticalStrut(10));
+        panel.add(Box.createVerticalStrut(15));
         panel.add(quitButton);
-        panel.add(Box.createVerticalStrut(10));
+        panel.add(Box.createVerticalStrut(15));
     }
 
 
