@@ -84,4 +84,4 @@ image.
 
 
 ## Phase 4: Task 3
-<img height="500" width="500" src="UML diagram.pdf"/>
+<img height="700" width="700" src="UML class.png"/>
