@@ -76,3 +76,12 @@ image.
 
 - You can save the state of my application by clicking on the "Save Workouts" button on the Menu Frame.
 - You can reload the state of my application by clicking on the "Load Previous Workouts" button on the Menu Frame.
+
+
+## Phase 4: Task 2
+
+
+
+
+## Phase 4: Task 3
+<img height="500" width="500" src="UML diagram.pdf"/>
