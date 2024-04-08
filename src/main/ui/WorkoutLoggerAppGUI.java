@@ -109,6 +109,16 @@ public class WorkoutLoggerAppGUI implements ActionListener, MouseListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                for (Event el : EventLog.getInstance()) {
+                    System.out.println(el.toString());
+                }
+                frame.dispose();
+                System.exit(0);
+            }
+        });
     }
 
 
